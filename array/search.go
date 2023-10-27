@@ -1,4 +1,4 @@
-package main
+package array
 
 func LinearSearch(haystack []int, needle int) (bool) {
     // O(n)

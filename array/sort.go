@@ -1,4 +1,4 @@
-package main
+package array
 
 func BubbleSort(array []int) ([]int) {
     // O(n^2)
