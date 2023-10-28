@@ -1,16 +1,16 @@
 package array
 
 import (
-    "reflect"
-    "testing"
+	"reflect"
+	"testing"
 )
 
 func TestBubbleSort(t *testing.T) {
-    unsortedArray := []int{3, 5, 2, 1, 4}
-    sortedArray := BubbleSort(unsortedArray)
+	unsortedArray := []int{3, 5, 2, 1, 4}
+	sortedArray := BubbleSort(unsortedArray)
 
-    expected := []int{1, 2, 3, 4, 5}
-    if ! reflect.DeepEqual(expected, sortedArray) {
-        t.Errorf("Result %v not equal to expected %v", sortedArray, expected)
-    }
+	expected := []int{1, 2, 3, 4, 5}
+	if !reflect.DeepEqual(expected, sortedArray) {
+		t.Errorf("Result %v not equal to expected %v", sortedArray, expected)
+	}
 }
