@@ -2,7 +2,7 @@ package queue
 
 import "testing"
 
-func (expected *Queue) Equal(actual *Queue) bool {
+func (expected *Queue[T]) Equal(actual *Queue[T]) bool {
 	return expected.ToString() == actual.ToString()
 }
 

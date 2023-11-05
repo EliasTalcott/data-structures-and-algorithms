@@ -2,7 +2,7 @@ package linked_list
 
 import "testing"
 
-func (expected *ListNode) Equal(actual *ListNode) bool {
+func (expected *ListNode[T]) Equal(actual *ListNode[T]) bool {
 	return expected.ToString() == actual.ToString()
 }
 

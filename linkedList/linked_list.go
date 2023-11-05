@@ -2,44 +2,44 @@ package linked_list
 
 import "fmt"
 
-type ListNode struct {
-	data int
-	next *ListNode
+type ListNode[T comparable] struct {
+	data T
+	next *ListNode[T]
 }
 
-func CreateLinkedList(array []int) *ListNode {
+func CreateLinkedList[T comparable](array []T) *ListNode[T] {
 	// O(n)
 	if len(array) == 0 {
 		return nil
 	}
-	head := &ListNode{array[0], nil}
+	head := &ListNode[T]{array[0], nil}
 	current := head
 	for _, data := range array[1:] {
-		current.next = &ListNode{data, nil}
+		current.next = &ListNode[T]{data, nil}
 		current = current.next
 	}
 	return head
 }
 
-func (head *ListNode) Append(value int) *ListNode {
+func (head *ListNode[T]) Append(value T) *ListNode[T] {
 	// O(n)
 	if head == nil {
-		return &ListNode{value, nil}
+		return &ListNode[T]{value, nil}
 	}
 	current := head
 	for current.next != nil {
 		current = current.next
 	}
-	current.next = &ListNode{value, nil}
+	current.next = &ListNode[T]{value, nil}
 	return head
 }
 
-func (head *ListNode) Prepend(value int) *ListNode {
+func (head *ListNode[T]) Prepend(value T) *ListNode[T] {
 	// O(1)
-	return &ListNode{value, head}
+	return &ListNode[T]{value, head}
 }
 
-func (head *ListNode) Delete(value int) *ListNode {
+func (head *ListNode[T]) Delete(value T) *ListNode[T] {
 	// O(n)
 	if head == nil {
 		return head
@@ -61,7 +61,7 @@ func (head *ListNode) Delete(value int) *ListNode {
 	return head
 }
 
-func (head *ListNode) ToString() string {
+func (head *ListNode[T]) ToString() string {
 	// O(n)
 	result := "("
 	for head != nil {

@@ -5,33 +5,33 @@ import (
 	"fmt"
 )
 
-type QueueNode struct {
-	data int
-	next *QueueNode
+type QueueNode[T any] struct {
+	data T
+	next *QueueNode[T]
 }
 
-type Queue struct {
-	head *QueueNode
-	tail *QueueNode
+type Queue[T any] struct {
+	head *QueueNode[T]
+	tail *QueueNode[T]
 }
 
-func CreateQueue(array []int) *Queue {
+func CreateQueue[T any](array []T) *Queue[T] {
 	// O(n)
 	if len(array) == 0 {
-		return &Queue{nil, nil}
+		return &Queue[T]{nil, nil}
 	}
-	head := &QueueNode{array[0], nil}
+	head := &QueueNode[T]{array[0], nil}
 	current := head
 	for _, data := range array[1:] {
-		current.next = &QueueNode{data, nil}
+		current.next = &QueueNode[T]{data, nil}
 		current = current.next
 	}
-	return &Queue{head, current}
+	return &Queue[T]{head, current}
 }
 
-func (queue *Queue) Enqueue(data int) {
+func (queue *Queue[T]) Enqueue(data T) {
 	// O(1)
-	new_node := &QueueNode{data, nil}
+	new_node := &QueueNode[T]{data, nil}
 	if queue.tail == nil {
 		queue.head = new_node
 		queue.tail = new_node
@@ -41,9 +41,9 @@ func (queue *Queue) Enqueue(data int) {
 	queue.tail = new_node
 }
 
-func (queue *Queue) Dequeue() (int, error) {
+func (queue *Queue[T]) Dequeue() (T, error) {
 	// O(1)
-	var data int
+	var data T
 	if queue.head == nil {
 		return data, errors.New("Queue is empty!")
 	}
@@ -55,7 +55,7 @@ func (queue *Queue) Dequeue() (int, error) {
 	return data, nil
 }
 
-func (queue *Queue) ToString() string {
+func (queue *Queue[T]) ToString() string {
 	// O(n)
 	result := "("
 	for queue.head != nil {
