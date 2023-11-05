@@ -1,6 +1,8 @@
 package array
 
-func LinearSearch(haystack []int, needle int) bool {
+import "golang.org/x/exp/constraints"
+
+func LinearSearch[T constraints.Ordered](haystack []T, needle T) bool {
 	// O(n)
 	for _, value := range haystack {
 		if value == needle {
@@ -10,7 +12,7 @@ func LinearSearch(haystack []int, needle int) bool {
 	return false
 }
 
-func BinarySearch(haystack []int, needle int) bool {
+func BinarySearch[T constraints.Ordered](haystack []T, needle T) bool {
 	// O(log(n))
 	low := 0
 	high := len(haystack) - 1
