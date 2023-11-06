@@ -29,7 +29,7 @@ func TestPop(t *testing.T) {
 		t.Errorf("Popped value %v not equal to expected %v", value, expected_value)
 	}
 
-    _, _ = stack.Pop()
+	_, _ = stack.Pop()
 	expected_stack := CreateStack([]int{})
 	if !expected_stack.Equal(stack) {
 		t.Errorf("Result %v not equal to expected %v", stack.ToString(), expected_stack.ToString())
