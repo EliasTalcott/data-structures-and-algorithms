@@ -14,3 +14,13 @@ func TestBubbleSort(t *testing.T) {
 		t.Errorf("Result %v not equal to expected %v", sortedArray, expected)
 	}
 }
+
+func TestQuickSort(t *testing.T) {
+	array := []int{3, 5, 2, 1, 4}
+	QuickSort(array)
+
+	expected := []int{1, 2, 3, 4, 5}
+	if !reflect.DeepEqual(expected, array) {
+		t.Errorf("Result %v not equal to expected %v", array, expected)
+	}
+}
