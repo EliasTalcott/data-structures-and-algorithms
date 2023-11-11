@@ -19,3 +19,33 @@ func TestTraverseInOrder(t *testing.T) {
 		t.Errorf("Result %v not equal to expected %v", inOrderTraversal, expected)
 	}
 }
+
+func TestTraversePreOrder(t *testing.T) {
+	var root *Node[int]
+	root = root.Insert(3).
+		Insert(5).
+		Insert(1).
+		Insert(4).
+		Insert(2)
+
+	preOrderTraversal := root.TraversePreOrder()
+	expected := []int{3, 1, 2, 5, 4}
+	if !reflect.DeepEqual(expected, preOrderTraversal) {
+		t.Errorf("Result %v not equal to expected %v", preOrderTraversal, expected)
+	}
+}
+
+func TestTraversePostOrder(t *testing.T) {
+	var root *Node[int]
+	root = root.Insert(3).
+		Insert(5).
+		Insert(1).
+		Insert(4).
+		Insert(2)
+
+	postOrderTraversal := root.TraversePostOrder()
+	expected := []int{2, 1, 4, 5, 3}
+	if !reflect.DeepEqual(expected, postOrderTraversal) {
+		t.Errorf("Result %v not equal to expected %v", postOrderTraversal, expected)
+	}
+}
