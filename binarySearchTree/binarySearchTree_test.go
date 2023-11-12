@@ -5,6 +5,21 @@ import (
 	"testing"
 )
 
+func TestTraverseLevelOrder(t *testing.T) {
+	var root *Node[int]
+	root = root.Insert(3).
+		Insert(5).
+		Insert(1).
+		Insert(4).
+		Insert(2)
+
+	levelOrderTraversal := root.TraverseLevelOrder()
+	expected := []int{3, 1, 5, 2, 4}
+	if !reflect.DeepEqual(expected, levelOrderTraversal) {
+		t.Errorf("Result %v not equal to expected %v", levelOrderTraversal, expected)
+	}
+}
+
 func TestTraverseInOrder(t *testing.T) {
 	var root *Node[int]
 	root = root.Insert(3).

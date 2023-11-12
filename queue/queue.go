@@ -55,6 +55,10 @@ func (queue *Queue[T]) Dequeue() (T, error) {
 	return data, nil
 }
 
+func (queue *Queue[T]) Empty() bool {
+	return queue.head == nil
+}
+
 func (queue *Queue[T]) ToString() string {
 	// O(n)
 	result := "("

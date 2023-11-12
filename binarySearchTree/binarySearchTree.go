@@ -1,6 +1,9 @@
 package binarySearchTree
 
-import "golang.org/x/exp/constraints"
+import (
+	"etalcott/datastructures/queue"
+	"golang.org/x/exp/constraints"
+)
 
 type Node[T constraints.Ordered] struct {
 	value T
@@ -12,15 +15,30 @@ func (root *Node[T]) Insert(value T) *Node[T] {
 	// O(logn) for balanced tree, O(n) worst case
 	if root == nil {
 		return &Node[T]{value, nil, nil}
-	} else if value == root.value {
-		return root
 	} else if value < root.value {
 		root.left = root.left.Insert(value)
-		return root
-	} else {
+	} else if value > root.value {
 		root.right = root.right.Insert(value)
-		return root
 	}
+	return root
+}
+
+func (root *Node[T]) TraverseLevelOrder() []T {
+	// O(n)
+	queue := queue.CreateQueue([]*Node[T]{root})
+	var result []T
+
+	for !queue.Empty() {
+		node, _ := queue.Dequeue()
+		result = append(result, node.value)
+		if node.left != nil {
+			queue.Enqueue(node.left)
+		}
+		if node.right != nil {
+			queue.Enqueue(node.right)
+		}
+	}
+	return result
 }
 
 func (root *Node[T]) TraverseInOrder() []T {
