@@ -5,6 +5,28 @@ import (
 	"testing"
 )
 
+func TestEqual(t *testing.T) {
+	var tree1, tree2 *Node[int]
+	tree1 = tree1.Insert(3).
+		Insert(2).
+		Insert(4).
+		Insert(1).
+		Insert(5)
+
+	tree2 = tree2.Insert(3).
+		Insert(1).
+		Insert(5).
+		Insert(2).
+		Insert(4)
+
+	if !tree1.Equal(tree1) {
+		t.Error("Tree 1 compared to tree 1 was not equal when it should have been")
+	}
+	if tree1.Equal(tree2) {
+		t.Error("Tree 1 compared to tree 2 was equal when it should not have been")
+	}
+}
+
 func TestTraverseLevelOrder(t *testing.T) {
 	var root *Node[int]
 	root = root.Insert(3).

@@ -11,6 +11,20 @@ type Node[T constraints.Ordered] struct {
 	right *Node[T]
 }
 
+func (tree1 *Node[T]) Equal(tree2 *Node[T]) bool {
+	// O(n)
+	if tree1 == nil && tree2 == nil {
+		return true
+	}
+	if tree1 == nil || tree2 == nil {
+		return false
+	}
+	if tree1.value != tree2.value {
+		return false
+	}
+	return tree1.left.Equal(tree2.left) && tree1.right.Equal(tree2.right)
+}
+
 func (root *Node[T]) Insert(value T) *Node[T] {
 	// O(logn) for balanced tree, O(n) worst case
 	if root == nil {
