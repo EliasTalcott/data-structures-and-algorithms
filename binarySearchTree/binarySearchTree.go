@@ -11,6 +11,42 @@ type Node[T constraints.Ordered] struct {
 	right *Node[T]
 }
 
+func (root *Node[T]) Delete(value T) *Node[T] {
+	// O(h)
+	if root == nil {
+		return nil
+	} else if value < root.value {
+		root.left = root.left.Delete(value)
+		return root
+	} else if value > root.value {
+		root.right = root.right.Delete(value)
+		return root
+	} else {
+		if root.left != nil && root.right != nil {
+			newRoot := root.left
+			if newRoot.right == nil {
+				newRoot.right = root.right
+				return newRoot
+			}
+			var prev *Node[T]
+			for newRoot.right != nil {
+				prev = newRoot
+				newRoot = newRoot.right
+			}
+			prev.right = newRoot.left
+			newRoot.left = root.left
+			newRoot.right = root.right
+			return newRoot
+		} else if root.left != nil {
+			return root.left
+		} else if root.right != nil {
+			return root.right
+		} else {
+			return nil
+		}
+	}
+}
+
 func (tree1 *Node[T]) Equal(tree2 *Node[T]) bool {
 	// O(n)
 	if tree1 == nil && tree2 == nil {
@@ -26,7 +62,7 @@ func (tree1 *Node[T]) Equal(tree2 *Node[T]) bool {
 }
 
 func (root *Node[T]) Insert(value T) *Node[T] {
-	// O(logn) for balanced tree, O(n) worst case
+	// O(h)
 	if root == nil {
 		return &Node[T]{value, nil, nil}
 	} else if value < root.value {

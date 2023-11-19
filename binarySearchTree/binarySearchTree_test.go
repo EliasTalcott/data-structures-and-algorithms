@@ -5,6 +5,40 @@ import (
 	"testing"
 )
 
+func TestDelete(t *testing.T) {
+	var root *Node[int]
+	root = root.Insert(2).
+		Insert(4).
+		Insert(1).
+		Insert(3).
+		Insert(5).
+		Insert(0)
+
+	// 2 children
+	root = root.Delete(4)
+	tree := root.TraversePreOrder()
+	expected := []int{2, 1, 0, 3, 5}
+	if !reflect.DeepEqual(expected, tree) {
+		t.Errorf("Result %v not equal to expected %v", tree, expected)
+	}
+
+	// 1 child
+	root = root.Delete(1)
+	tree = root.TraversePreOrder()
+	expected = []int{2, 0, 3, 5}
+	if !reflect.DeepEqual(expected, tree) {
+		t.Errorf("Result %v not equal to expected %v", tree, expected)
+	}
+
+	// Leaf node
+	root = root.Delete(0)
+	tree = root.TraversePreOrder()
+	expected = []int{2, 3, 5}
+	if !reflect.DeepEqual(expected, tree) {
+		t.Errorf("Result %v not equal to expected %v", tree, expected)
+	}
+}
+
 func TestEqual(t *testing.T) {
 	var tree1, tree2 *Node[int]
 	tree1 = tree1.Insert(3).
