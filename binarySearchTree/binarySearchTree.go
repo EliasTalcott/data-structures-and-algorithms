@@ -1,11 +1,11 @@
 package binarySearchTree
 
 import (
+	"cmp"
 	"etalcott/datastructures/queue"
-	"golang.org/x/exp/constraints"
 )
 
-type Node[T constraints.Ordered] struct {
+type Node[T cmp.Ordered] struct {
 	value T
 	left  *Node[T]
 	right *Node[T]

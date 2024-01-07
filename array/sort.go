@@ -1,8 +1,8 @@
 package array
 
-import "golang.org/x/exp/constraints"
+import "cmp"
 
-func BubbleSort[T constraints.Ordered](array []T) []T {
+func BubbleSort[T cmp.Ordered](array []T) []T {
 	// O(n^2)
 	for i := len(array) - 1; i > 0; i-- {
 		for j := 0; j < i; j++ {
@@ -16,12 +16,12 @@ func BubbleSort[T constraints.Ordered](array []T) []T {
 	return array
 }
 
-func QuickSort[T constraints.Ordered](array []T) {
+func QuickSort[T cmp.Ordered](array []T) {
 	// O(nlogn) average case to O(n^2) worst case
 	quickSort(array, 0, len(array)-1)
 }
 
-func quickSort[T constraints.Ordered](array []T, lo int, hi int) {
+func quickSort[T cmp.Ordered](array []T, lo int, hi int) {
 	if lo >= hi {
 		return
 	}
@@ -30,7 +30,7 @@ func quickSort[T constraints.Ordered](array []T, lo int, hi int) {
 	quickSort(array, pivotIdx+1, hi)
 }
 
-func partition[T constraints.Ordered](array []T, lo int, hi int) int {
+func partition[T cmp.Ordered](array []T, lo int, hi int) int {
 	pivot := array[hi]
 	idx := lo - 1
 

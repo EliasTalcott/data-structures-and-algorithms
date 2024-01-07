@@ -1,11 +1,11 @@
 package heap
 
 import (
+	"cmp"
 	"errors"
-	"golang.org/x/exp/constraints"
 )
 
-type MinHeap[T constraints.Ordered] []T
+type MinHeap[T cmp.Ordered] []T
 
 func (heap MinHeap[T]) Insert(value T) MinHeap[T] {
 	// O(logn)
@@ -18,7 +18,7 @@ func (heap MinHeap[T]) Delete() (MinHeap[T], T, error) {
 	// O(logn)
 	var value T
 	if len(heap) == 0 {
-		return heap, value, errors.New("Cannot delete from an empty heap")
+		return heap, value, errors.New("cannot delete from an empty heap")
 	}
 
 	value = heap[0]

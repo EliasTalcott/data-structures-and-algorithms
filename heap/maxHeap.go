@@ -1,11 +1,11 @@
 package heap
 
 import (
+	"cmp"
 	"errors"
-	"golang.org/x/exp/constraints"
 )
 
-type MaxHeap[T constraints.Ordered] []T
+type MaxHeap[T cmp.Ordered] []T
 
 func (heap MaxHeap[T]) Insert(value T) MaxHeap[T] {
 	// O(logn)
@@ -18,7 +18,7 @@ func (heap MaxHeap[T]) Delete() (MaxHeap[T], T, error) {
 	// O(logn)
 	var value T
 	if len(heap) == 0 {
-		return heap, value, errors.New("Cannot delete from an empty heap")
+		return heap, value, errors.New("cannot delete from an empty heap")
 	}
 
 	value = heap[0]
